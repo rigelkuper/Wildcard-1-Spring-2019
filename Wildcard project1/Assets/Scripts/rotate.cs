@@ -14,7 +14,7 @@ public class rotate : MonoBehaviour
     void Update()
     {
         mouseDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        mouseAngle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg - 90; //conversion from radians to degrees
+        mouseAngle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg; //conversion from radians to degrees
         rotator = Quaternion.AngleAxis(mouseAngle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotator, rotationSpeed * Time.deltaTime);
     }
