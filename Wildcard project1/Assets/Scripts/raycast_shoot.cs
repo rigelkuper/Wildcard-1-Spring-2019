@@ -30,10 +30,8 @@ public class raycast_shoot : MonoBehaviour
 
         Vector3 rayOrigin = new Vector3(0, 0, 0); //fix me I'm wrong
         shot_line.SetPosition(0, gun_end.position);
-        if (Physics.Raycast(rayOrigin, hand.transform.forward, out hit, weapon_range))
-        {
-
-        }
+        //if (Physics.Raycast(rayOrigin, hand.transform.forward, out hit, weapon_range))
+        //{}
 
     }
     private IEnumerator ShotEffect()
