@@ -157,9 +157,10 @@ GameObject:
   - component: {fileID: 6840019652039177205}
   - component: {fileID: 6840019652039177202}
   - component: {fileID: 6840019652039177206}
+  - component: {fileID: 2442252975788673125}
   m_Layer: 0
   m_Name: TestCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,3 +277,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseAngle: 0
   rotationSpeed: 5
+--- !u!58 &2442252975788673125
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6840019652039177203}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.17, y: 0.018390179}
+  serializedVersion: 2
+  m_Radius: 0.79
