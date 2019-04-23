@@ -6,10 +6,8 @@ public class enemy_follow : MonoBehaviour
 {
     [SerializeField]
     private float speed;
-
     [SerializeField]
     private float distance;
-
     private Transform target;
 
     // Start is called before the first frame update
@@ -21,10 +19,18 @@ public class enemy_follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, target.position) > distance)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        }
         
+        
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (Vector2.Distance(transform.position, target.position) > distance)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            }
+        }
     }
 }
