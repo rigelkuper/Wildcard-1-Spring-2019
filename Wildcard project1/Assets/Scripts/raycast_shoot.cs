@@ -4,40 +4,54 @@ using UnityEngine;
 
 public class raycast_shoot : MonoBehaviour
 {
-    public float damage = 1.0f;
-    public float fire_rate = .25f;
-    public float weapon_range = 50f;
-    public float hit_force = 100f;
-
-
-    public Transform gun_end;
-    private GameObject hand;
-    private WaitForSeconds shotDuration = new WaitForSeconds(.07f);
-    private LineRenderer shot_line;
-    private float next_fire;
+    public Transform fire_point;
+    public LineRenderer shot;
+    public float shot_distance = 5f;
+    public Vector3 length;
+    public float seconds = 100.5f;
+    public float time_since = 0f;
     void Start()
     {
-        shot_line = GetComponent<LineRenderer>();
+        shot.SetPosition(0, new Vector3(0, 0, 0));
+        shot.SetPosition(0, new Vector3(0, 0, 0));
+        shot.startWidth = 0;
+        shot.endWidth = 0;
     }
     void Update()
     {
-        if (Input.GetAxis("Fire1") > 0 && (Time.time > next_fire))
+        if (Input.GetButtonDown("Fire1") && (time_since <= 0))
         {
-            next_fire = Time.time + fire_rate;
-            StartCoroutine(ShotEffect());
-            RaycastHit hit;
+            Shoot();
+            time_since = seconds;
         }
-
-        Vector3 rayOrigin = new Vector3(0, 0, 0); //fix me I'm wrong
-        shot_line.SetPosition(0, gun_end.position);
-        //if (Physics.Raycast(rayOrigin, hand.transform.forward, out hit, weapon_range))
-        //{}
-
+        time_since -= Time.deltaTime;
     }
-    private IEnumerator ShotEffect()
+    void Shoot()
     {
-        shot_line.enabled = true;
-        yield return shotDuration;
-        shot_line.enabled = false;
+        shot.startWidth = .1f;
+        shot.endWidth = .1f;
+        RaycastHit2D hit_info = Physics2D.Raycast(fire_point.position, fire_point.right, shot_distance);
+        shot.SetPosition(0, fire_point.position);
+        if (hit_info.collider != null)
+        {
+            test_health health = hit_info.transform.GetComponent<test_health>();
+            health.health -= 1;
+            shot.SetPosition(1, hit_info.point);
+        }
+        else
+        {
+            length = (fire_point.up);
+            shot.SetPosition(1, fire_point.position + fire_point.right * shot_distance);
+        }
+        StartCoroutine(wait());
     }
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(.5f);
+        shot.SetPosition(0, new Vector3(0, 0, 0));
+        shot.SetPosition(1, new Vector3(0, 0, 0));
+        shot.startWidth = 0;
+        shot.endWidth = 0;
+    }
+    
 }
