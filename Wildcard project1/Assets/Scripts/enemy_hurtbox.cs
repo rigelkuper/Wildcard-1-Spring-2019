@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// THIS SCRIPT IS OUTDATED. CHECK PLAYERLIFE SCRIPT FOR DAMAGING PLAYER.
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

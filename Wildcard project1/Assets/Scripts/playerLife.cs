@@ -10,13 +10,17 @@ using UnityEngine;
 public class playerLife : MonoBehaviour
 {
     public int maxHealth = 20;
+    public int iFrameSeconds = 3;
+
     
     char_health playerHealth;
+    bool invincible;
     // Start is called before the first frame update
     void Start()
     {
         playerHealth = GetComponent<char_health>();
         playerHealth.setHealth(maxHealth);
+        invincible = false;
     }
 
     // Update is called once per frame
@@ -28,9 +32,26 @@ public class playerLife : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D other)
+    {
+        Debug.Log("Hit something");
+        if (other.gameObject.tag == "Enemy"){
+            damagePlayer(other.gameObject.GetComponent<enemy_controller>().damageAmount);
+        }
+    }
+
     public void damagePlayer(int amount)
     {
-        playerHealth.decraseHealth(amount);
+        if (!invincible){
+            playerHealth.decraseHealth(amount);
+
+            if (playerHealth.getHealth() == 0){
+                killPlayer();
+            } else {
+                StartCoroutine(doIFrames());
+                StopCoroutine(doIFrames());
+            }
+        }
     }
 
     public void healPlayer(int amount)
@@ -46,7 +67,13 @@ public class playerLife : MonoBehaviour
     public void killPlayer()
     {
         Debug.Log("Player died!");
-        Destroy(gameObject);
+        //Destroy(gameObject);
+    }
+
+    IEnumerator doIFrames(){
+        invincible = true;
+        yield return new WaitForSeconds(iFrameSeconds);
+        invincible = false;
     }
 
     

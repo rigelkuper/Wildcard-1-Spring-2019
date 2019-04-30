@@ -224,6 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   distance: 2
+  isTarget: 0
 --- !u!212 &1966381514795120437
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -325,13 +326,41 @@ GameObject:
   - component: {fileID: 1966381514795120436}
   - component: {fileID: 1966381514795120439}
   - component: {fileID: 1966381514795120432}
+  - component: {fileID: 1966381514795120445}
+  - component: {fileID: 1966381514795120446}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1966381514795120445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966381514795120443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6183ca12c4aa89144b9a38093da487ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  damageAmount: 1
+--- !u!114 &1966381514795120446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966381514795120443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c4c522037a8ac438219d669074c2ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2340674709955043810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +391,7 @@ GameObject:
   - component: {fileID: 2340674709955043817}
   - component: {fileID: 2340674709955043816}
   - component: {fileID: 6878050758448011893}
+  - component: {fileID: 2340674709955043818}
   m_Layer: 0
   m_Name: TestCharacter
   m_TagString: Player
@@ -480,6 +510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  iFrameSeconds: 1
 --- !u!114 &2340674709955043817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +523,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c4c522037a8ac438219d669074c2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &2340674709955043818
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2340674709955043811}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.13597417, y: -0.011649728}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.0238738, y: 1.5270493}
+  m_EdgeRadius: 0
 --- !u!4 &2340674710302088140
 Transform:
   m_ObjectHideFlags: 0
