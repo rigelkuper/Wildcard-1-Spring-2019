@@ -18,13 +18,13 @@ public class enemy_follow : MonoBehaviour
     [SerializeField]
     private Transform move_spots;
     [SerializeField]
-    private float minX;
+    private Transform minX;
     [SerializeField]
-    private float maxX;
+    private Transform maxX;
     [SerializeField]
-    private float minY;
+    private Transform minY;
     [SerializeField]
-    private float maxY;
+    private Transform maxY;
     private float wait_time;
     [SerializeField]
     private float start_wait_time;
@@ -37,6 +37,7 @@ public class enemy_follow : MonoBehaviour
 
         idle = true;
         wait_time = start_wait_time;
+        move_spots.position = new Vector2(Random.Range(minX.position.x, maxX.position.x), Random.Range(minY.position.y, maxY.position.y));
     }
 
     // Update is called once per frame
@@ -44,6 +45,7 @@ public class enemy_follow : MonoBehaviour
     {
         if (follow_player)
         {
+            //zombie rotates towards player
             idle = false;
 
             var relativePosition = target.position - transform.position;
@@ -53,12 +55,15 @@ public class enemy_follow : MonoBehaviour
         }
         else if (idle)
         {
-            transform.position = Vector2.MoveTowards(transform.position, move_spots.position, speed * Time.deltaTime);
+            //zombie when not following player, goes into idle mode and roams certain area
+            transform.position = Vector2.MoveTowards(transform.position, move_spots.position, Random.Range(1,speed) * Time.deltaTime);
 
+            //waits(wait_time) until to move to another position
             if (Vector2.Distance(transform.position, move_spots.position) < 0.2f)
             {
                 if (wait_time <= 0)
                 {
+                    move_spots.position = new Vector2(Random.Range(minX.position.x, maxX.position.x), Random.Range(minY.position.y, maxY.position.y));
                     wait_time = start_wait_time;
                 }
                 else
@@ -72,6 +77,7 @@ public class enemy_follow : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
+        //follows player if in circle collider
         if (collision.gameObject.tag == "Player")
         {
             idle = false;
@@ -86,6 +92,7 @@ public class enemy_follow : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D collision)
     {
+        //when player leaves circle collider, zombie stops following
         follow_player = false;
         idle = true;
     }
