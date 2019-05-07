@@ -13,6 +13,7 @@ public class line_renderer : MonoBehaviour
     public float start = 0;
     public float test_scalar = 1f;
     public float accuracy = 0f;
+    public float damage = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,13 +25,12 @@ public class line_renderer : MonoBehaviour
         shot.endWidth = 0;
         shot.startWidth = .1f;
         shot.endWidth = .1f;
-        Debug.Log(fire_point.right);
         RaycastHit2D hit_info = Physics2D.Raycast(fire_point.position, fire_point.right + fire_point.up * (0.2f * scalar), shot_distance);
         shot.SetPosition(0, fire_point.position);
         if (hit_info.collider != null)
         {
             test_health health = hit_info.transform.GetComponent<test_health>();
-            health.health -= 1;
+            health.health -= damage;
             shot.SetPosition(1, hit_info.point);
         }
         else
