@@ -15,12 +15,14 @@ public class playerLife : MonoBehaviour
     
     char_health playerHealth;
     bool invincible;
+    SpriteRenderer playerSprite;
     // Start is called before the first frame update
     void Start()
     {
         playerHealth = GetComponent<char_health>();
         playerHealth.setHealth(maxHealth);
         invincible = false;
+        playerSprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -35,7 +37,7 @@ public class playerLife : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         Debug.Log("Hit something");
-        if (other.gameObject.tag == "Enemy"){
+        if (other.gameObject.tag == "Enemy" && !other.isTrigger){
             damagePlayer(other.gameObject.GetComponent<enemy_controller>().damageAmount);
         }
     }
@@ -67,14 +69,16 @@ public class playerLife : MonoBehaviour
     public void killPlayer()
     {
         Debug.Log("Player died!");
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         //Destroy(gameObject);
     }
 
     IEnumerator doIFrames(){
         invincible = true;
+        playerSprite.color = Color.red;
         yield return new WaitForSeconds(iFrameSeconds);
+        playerSprite.color = Color.white;
         invincible = false;
     }
-
     
 }
