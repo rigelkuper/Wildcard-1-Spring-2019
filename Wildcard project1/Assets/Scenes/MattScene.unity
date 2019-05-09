@@ -927,10 +927,10 @@ MonoBehaviour:
   distance: 2
   follow_player: 0
   move_spots: {fileID: 0}
-  minX: 0
-  maxX: 0
-  minY: 0
-  maxY: 0
+  minX: {fileID: 0}
+  maxX: {fileID: 0}
+  minY: {fileID: 0}
+  maxY: {fileID: 0}
   start_wait_time: 0
 --- !u!212 &1966381514795120437
 SpriteRenderer:
@@ -1218,6 +1218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   iFrameSeconds: 1
+  gameOverScene: 
 --- !u!114 &2340674709955043817
 MonoBehaviour:
   m_ObjectHideFlags: 0

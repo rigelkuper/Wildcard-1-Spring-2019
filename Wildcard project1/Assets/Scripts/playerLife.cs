@@ -6,11 +6,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerLife : MonoBehaviour
 {
     public int maxHealth = 20;
     public int iFrameSeconds = 3;
+    public string gameOverScene;
 
     
     char_health playerHealth;
@@ -70,6 +72,7 @@ public class playerLife : MonoBehaviour
     {
         Debug.Log("Player died!");
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        SceneManager.LoadScene("MattGameOver");
         //Destroy(gameObject);
     }
 
