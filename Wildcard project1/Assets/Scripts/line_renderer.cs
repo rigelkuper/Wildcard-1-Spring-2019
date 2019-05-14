@@ -29,8 +29,8 @@ public class line_renderer : MonoBehaviour
         shot.SetPosition(0, fire_point.position);
         if (hit_info.collider != null)
         {
-            test_health health = hit_info.transform.GetComponent<test_health>();
-            health.health -= damage;
+            enemy_controller health = hit_info.transform.GetComponent<enemy_controller>();
+            health.damageEnemy(damage);
             shot.SetPosition(1, hit_info.point);
         }
         else
