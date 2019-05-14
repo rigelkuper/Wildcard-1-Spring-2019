@@ -6,6 +6,8 @@ public class enemy_follow : MonoBehaviour
 {
     //For moving and following player
     [SerializeField]
+    private Rigidbody2D rb;
+    [SerializeField]
     private float speed; //speed for zombie
     [SerializeField]
     private float distance; //how far away the zombie should be from the player; just incase the zombie pushes the player
@@ -14,6 +16,7 @@ public class enemy_follow : MonoBehaviour
     private bool follow_player;
 
     //For the zombie moving around randomly
+    [SerializeField]
     private bool idle;
     [SerializeField]
     private Transform move_spots;
@@ -25,16 +28,19 @@ public class enemy_follow : MonoBehaviour
     private Transform minY;
     [SerializeField]
     private Transform maxY;
-    private float wait_time;
+    private float wait_time; // make private
     [SerializeField]
     private float start_wait_time;
+    private Transform last_rotation;
 
     // Start is called before the first frame update
     void Start()
     {
+        //gets the target or the player gameobject
         follow_player = false;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
+        //this is for random movement when not following the player
         idle = true;
         wait_time = start_wait_time;
         move_spots.position = new Vector2(Random.Range(minX.position.x, maxX.position.x), Random.Range(minY.position.y, maxY.position.y));
@@ -48,15 +54,13 @@ public class enemy_follow : MonoBehaviour
             //zombie rotates towards player
             idle = false;
 
-            var relativePosition = target.position - transform.position;
-            var angle = Mathf.Atan2(relativePosition.y, relativePosition.x) * Mathf.Rad2Deg - 90;
-            var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = rotation;
+            //rotates to target position
+            FaceTarget(target);
         }
         else if (idle)
         {
-            //zombie when not following player, goes into idle mode and roams certain area
-            transform.position = Vector2.MoveTowards(transform.position, move_spots.position, Random.Range(1,speed) * Time.deltaTime);
+            //rotates to target position
+            FaceTarget(move_spots);
 
             //waits(wait_time) until to move to another position
             if (Vector2.Distance(transform.position, move_spots.position) < 0.2f)
@@ -71,8 +75,12 @@ public class enemy_follow : MonoBehaviour
                     wait_time -= Time.deltaTime;
                 }
             }
+            else
+            {
+                //zombie when not following player, goes into idle mode and roams certain area
+                transform.position = Vector2.MoveTowards(transform.position, move_spots.position, speed * Time.deltaTime);
+            }
         }
-        
     }
 
     void OnTriggerStay2D(Collider2D collision)
@@ -96,4 +104,13 @@ public class enemy_follow : MonoBehaviour
         follow_player = false;
         idle = true;
     }
+
+    private void FaceTarget(Transform target)
+    {
+        Vector3 vectorToTarget = target.position - transform.position;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+    }
+
 }
