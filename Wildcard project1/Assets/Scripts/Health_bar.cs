@@ -20,7 +20,7 @@ public class Health_bar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        normalized = (float) player.GetComponent<char_health>().getHealth() / (float) player.GetComponent<playerLife>().maxHealth;
+        normalized = (float) player.GetComponent<playerLife>().getHealth() / (float) player.GetComponent<playerLife>().maxHealth;
         barSlider.normalizedValue = normalized;
     }
 }

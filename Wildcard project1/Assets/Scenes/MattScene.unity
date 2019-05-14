@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 1436927091}
   - component: {fileID: 1436927090}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -590,10 +590,10 @@ RectTransform:
   m_Father: {fileID: 2145065737}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 126.95001, y: -52.929993}
-  m_SizeDelta: {x: 187.91003, y: 41.869995}
+  m_AnchorMin: {x: 0.05276243, y: 0.887}
+  m_AnchorMax: {x: 0.27038124, y: 0.9654571}
+  m_AnchoredPosition: {x: -0.07998657, y: 0.14001465}
+  m_SizeDelta: {x: -0.15999985, y: -0.27999997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1436927090
 MonoBehaviour:
@@ -923,9 +923,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b695680a1863a4499b9f05e90687e38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   speed: 2
   distance: 2
   follow_player: 0
+  idle: 0
   move_spots: {fileID: 0}
   minX: {fileID: 0}
   maxX: {fileID: 0}
@@ -1063,7 +1065,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966381514795120443}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10c4c522037a8ac438219d669074c2ae, type: 3}
   m_Name: 
@@ -1226,7 +1228,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2340674709955043811}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10c4c522037a8ac438219d669074c2ae, type: 3}
   m_Name: 
@@ -1402,6 +1404,8 @@ MonoBehaviour:
   length: {x: 0, y: 0, z: 0}
   seconds: 100.5
   time_since: 0
+  line: {fileID: 0}
+  num_shots: 1
 --- !u!58 &6878050758448011893
 CircleCollider2D:
   m_ObjectHideFlags: 0

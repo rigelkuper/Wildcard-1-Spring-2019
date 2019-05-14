@@ -1,5 +1,4 @@
-﻿// Please let Matthew know if you modify this script.
-
+﻿// OUTDATED. DO NOT USE.
 // Base character health script
 // Use this for health of all characters
 

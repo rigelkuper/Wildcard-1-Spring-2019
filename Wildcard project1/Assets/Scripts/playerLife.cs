@@ -10,19 +10,19 @@ using UnityEngine.SceneManagement;
 
 public class playerLife : MonoBehaviour
 {
-    public int maxHealth = 20;
+    public float maxHealth = 20;
     public int iFrameSeconds = 3;
     public string gameOverScene;
 
     
-    char_health playerHealth;
+    //char_health playerHealth;
     bool invincible;
     SpriteRenderer playerSprite;
+    float currentHealth;
     // Start is called before the first frame update
     void Start()
     {
-        playerHealth = GetComponent<char_health>();
-        playerHealth.setHealth(maxHealth);
+        currentHealth = maxHealth;
         invincible = false;
         playerSprite = GetComponent<SpriteRenderer>();
     }
@@ -30,8 +30,8 @@ public class playerLife : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(playerHealth.getHealth());
-        if (playerHealth.getHealth() == 0){
+        Debug.Log(currentHealth);
+        if (currentHealth <= 0){
             killPlayer();
         }
     }
@@ -44,12 +44,17 @@ public class playerLife : MonoBehaviour
         }
     }
 
-    public void damagePlayer(int amount)
+    public float getHealth()
+    {
+        return currentHealth;
+    }
+
+    public void damagePlayer(float amount)
     {
         if (!invincible){
-            playerHealth.decraseHealth(amount);
+            decreaseHealth(amount);
 
-            if (playerHealth.getHealth() == 0){
+            if (currentHealth <= 0){
                 killPlayer();
             } else {
                 StartCoroutine(doIFrames());
@@ -58,13 +63,13 @@ public class playerLife : MonoBehaviour
         }
     }
 
-    public void healPlayer(int amount)
+    public void healPlayer(float amount)
     {
-        int newHealth = playerHealth.getHealth() + amount;
+        float newHealth = currentHealth + amount;
         if (newHealth >= maxHealth){
-            playerHealth.setHealth(maxHealth);
+            currentHealth = maxHealth;
         } else {
-            playerHealth.setHealth(newHealth);
+            currentHealth = newHealth;
         }
     }
 
@@ -73,7 +78,15 @@ public class playerLife : MonoBehaviour
         Debug.Log("Player died!");
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         SceneManager.LoadScene("MattGameOver");
-        //Destroy(gameObject);
+    }
+
+    void decreaseHealth(float amount)
+    {
+        if (currentHealth - amount <= 0){
+            currentHealth = 0;
+        } else {
+            currentHealth -= amount;
+        }
     }
 
     IEnumerator doIFrames(){
@@ -83,5 +96,4 @@ public class playerLife : MonoBehaviour
         playerSprite.color = Color.white;
         invincible = false;
     }
-    
 }
