@@ -5,27 +5,34 @@ using UnityEngine;
 public class enemy_controller : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] int maxHealth = 10;
-    public int damageAmount = 1;
+    [SerializeField] float maxHealth = 10;
+    public float damageAmount = 1;
 
-    char_health enemyHealth;
+    //char_health enemyHealth;
+    float currentHealth;
     void Start()
     {
-        enemyHealth = GetComponent<char_health>();
-        enemyHealth.setHealth(maxHealth);
+        //enemyHealth = GetComponent<char_health>();
+        //enemyHealth.setHealth(maxHealth);
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyHealth.getHealth() == 0){
+        if (currentHealth == 0){
             killEnemy();
         }
     }
 
-    public void damageEnemy(int amount)
+    public float getHealth()
     {
-        enemyHealth.decraseHealth(amount);
+        return currentHealth;
+    }
+
+    public void damageEnemy(float amount)
+    {
+        decraseHealth(amount);
     }
 
     public void killEnemy()
@@ -34,12 +41,15 @@ public class enemy_controller : MonoBehaviour
         Destroy(gameObject);
     }
 
-    /* 
-    void onTriggerStay2D(GameObject other)
+    void decraseHealth(float amount)
     {
-        Debug.Log("Enemy hit something");
-        if (other.tag == "Player"){
-            other.GetComponent<playerLife>().damagePlayer(damageAmount);
+        if (currentHealth - amount <= 0){
+            currentHealth = 0;
+        } else {
+            currentHealth -= amount;
         }
-    }*/
+    }
+
+
+
 }
