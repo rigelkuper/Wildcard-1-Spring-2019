@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 363982000997218158}
   - component: {fileID: 363982000997218159}
+  - component: {fileID: 2801591768396651808}
   - component: {fileID: 363982000997218156}
   - component: {fileID: 363982000997218157}
   - component: {fileID: 363982000997218146}
@@ -83,6 +84,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2801591768396651808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363982000997218147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9043dbb28c0424389a48176a0a27fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  current_gun: {fileID: 0}
+  current_index: 0
+  parent: {fileID: 363982000997218158}
+  gun1: {fileID: 4905866078537822938, guid: 03ed0068c69896e40a19d606ac97566d, type: 3}
+  gun2: {fileID: 4905866078537822938, guid: b51767b1eb791f440b3bd8b03b8d4502, type: 3}
+  gun3: {fileID: 4905866078537822938, guid: 88579d6f0c6855a45affc330f6978a0a, type: 3}
+  gun4: {fileID: 0}
 --- !u!50 &363982000997218156
 Rigidbody2D:
   serializedVersion: 4
