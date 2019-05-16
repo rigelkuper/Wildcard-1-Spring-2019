@@ -27,10 +27,14 @@ public class line_renderer : MonoBehaviour
         shot.endWidth = .1f;
         RaycastHit2D hit_info = Physics2D.Raycast(fire_point.position, fire_point.right + fire_point.up * (0.2f * scalar), shot_distance);
         shot.SetPosition(0, fire_point.position);
-        if (hit_info.collider != null)
+        if ((hit_info.collider != null) && (hit_info.collider.CompareTag("Enemy")))
         {
             enemy_controller health = hit_info.transform.GetComponent<enemy_controller>();
             health.damageEnemy(damage);
+            shot.SetPosition(1, hit_info.point);
+        }
+        if ((hit_info.collider != null))
+        {
             shot.SetPosition(1, hit_info.point);
         }
         else
