@@ -15,7 +15,7 @@ public class line_renderer : MonoBehaviour
     public float accuracy = 0f;
     public float damage = 1f;
     // Start is called before the first frame update
-    void Start()
+    public void Shoot()
     {
         float scalar = Random.Range(-accuracy, accuracy);
         start = Time.time;

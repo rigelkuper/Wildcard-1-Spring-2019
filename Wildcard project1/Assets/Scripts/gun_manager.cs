@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class gun_manager : MonoBehaviour
 {
@@ -41,14 +42,14 @@ public class gun_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("change_gun"))
+        if (Input.GetButtonDown("change_gun") || (Input.GetAxis("scroll") != 0))
         {
-            current_index += (int)Input.GetAxis("change_gun");
+            current_index += (int)Input.GetAxis("change_gun") + Math.Sign(Input.GetAxis("scroll"));
         }
 
         if (current_index < 0)
         {
-            current_index = gun_list.Count;
+            current_index = gun_list.Count -1;
         }
         if (current_index >= gun_list.Count)
         {
@@ -57,7 +58,7 @@ public class gun_manager : MonoBehaviour
         current_gun = gun_list[current_index];
         
         
-        if (Input.GetButtonDown("change_gun"))
+        if (Input.GetButtonDown("change_gun") || (Input.GetAxis("scroll") != 0))
         {
             foreach (Transform child in transform)
             {
@@ -67,7 +68,7 @@ public class gun_manager : MonoBehaviour
             //current_gun.transform.SetParent(parent);
             var gun = Instantiate(current_gun, parent.transform);
             gun.transform.SetParent(parent);
-            Debug.Log(current_gun);
+            
         }
         
     }

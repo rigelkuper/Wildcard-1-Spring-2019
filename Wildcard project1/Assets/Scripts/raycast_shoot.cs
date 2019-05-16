@@ -36,7 +36,8 @@ public class raycast_shoot : MonoBehaviour
     {
         GameObject go;
         go = Instantiate(line) as GameObject;
-        
+        line_renderer lr = go.transform.GetComponent<line_renderer>();
+        lr.Shoot();
         
         StartCoroutine(wait(go));
     }
