@@ -446,6 +446,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &894969256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8897946710268416071, guid: 8e47af3c38129a348bf065a6c2c8c41e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6931645599408613244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &894969264
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894969256}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1280216399
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,6 +847,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1464358351}
   - component: {fileID: 1464358350}
+  - component: {fileID: 1464358353}
+  - component: {fileID: 1464358352}
+  - component: {fileID: 1464358354}
   m_Layer: 0
   m_Name: Ammo Pickup
   m_TagString: Untagged
@@ -889,6 +919,71 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1464358352
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464358349}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00041703507, y: -0.0012504458}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.14415401, y: 0.14416096}
+  m_EdgeRadius: 0
+--- !u!61 &1464358353
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464358349}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
+--- !u!114 &1464358354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464358349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d7f1fb80a1f4b84b9388ba9a10c50ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  increaseAmount: 5
 --- !u!1 &1869538617
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1251,6 @@ GameObject:
   - component: {fileID: 2340674709955043813}
   - component: {fileID: 2340674709955043810}
   - component: {fileID: 2340674709955043814}
-  - component: {fileID: 2340674709955043817}
   - component: {fileID: 2340674709955043816}
   - component: {fileID: 6878050758448011893}
   - component: {fileID: 2340674709955043818}
@@ -1281,18 +1375,6 @@ MonoBehaviour:
   maxHealth: 20
   iFrameSeconds: 1
   gameOverScene: 
---- !u!114 &2340674709955043817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2340674709955043811}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10c4c522037a8ac438219d669074c2ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &2340674709955043818
 BoxCollider2D:
   m_ObjectHideFlags: 0
