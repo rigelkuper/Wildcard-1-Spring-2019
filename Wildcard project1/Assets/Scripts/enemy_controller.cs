@@ -7,14 +7,17 @@ public class enemy_controller : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] float maxHealth = 10;
     public float damageAmount = 1;
+    [SerializeField] int hurtFrameSeconds = 1;
 
     //char_health enemyHealth;
     float currentHealth;
+    SpriteRenderer enemySprite;
     void Start()
     {
         //enemyHealth = GetComponent<char_health>();
         //enemyHealth.setHealth(maxHealth);
         currentHealth = maxHealth;
+        enemySprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -33,11 +36,14 @@ public class enemy_controller : MonoBehaviour
     public void damageEnemy(float amount)
     {
         decraseHealth(amount);
+        //Debug.Log("ENemy hurt!");
+        StartCoroutine(doHurtFrames());
+        StopCoroutine(doHurtFrames());
     }
 
     public void killEnemy()
     {
-        Debug.Log("Enemy killed!");
+        //Debug.Log("Enemy killed!");
         Destroy(gameObject);
     }
 
@@ -50,6 +56,10 @@ public class enemy_controller : MonoBehaviour
         }
     }
 
-
+    IEnumerator doHurtFrames(){
+        enemySprite.color = Color.red;
+        yield return new WaitForSeconds(hurtFrameSeconds);
+        enemySprite.color = Color.white;
+    }
 
 }
