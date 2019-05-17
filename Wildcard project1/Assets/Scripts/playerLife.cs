@@ -11,8 +11,7 @@ using UnityEngine.SceneManagement;
 public class playerLife : MonoBehaviour
 {
     public float maxHealth = 20;
-    public int iFrameSeconds = 3;
-    public string gameOverScene;
+    public int iFrameSeconds = 1;
 
     
     //char_health playerHealth;
@@ -30,7 +29,7 @@ public class playerLife : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentHealth);
+        //Debug.Log(currentHealth);
         if (currentHealth <= 0){
             killPlayer();
         }
@@ -38,7 +37,7 @@ public class playerLife : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("Hit something");
+        //Debug.Log("Hit something");
         if (other.gameObject.tag == "Enemy" && !other.isTrigger){
             damagePlayer(other.gameObject.GetComponent<enemy_controller>().damageAmount);
         }
