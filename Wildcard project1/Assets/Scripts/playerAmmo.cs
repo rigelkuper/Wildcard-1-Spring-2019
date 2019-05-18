@@ -5,47 +5,51 @@ using UnityEngine;
 public class playerAmmo : MonoBehaviour
 {
     public int startingAmmo = 0;
-    public int numOfGuns = 4;
+    public int numOfGuns = 3;
+    public GameObject gun1;
+    public GameObject gun2;
+    public GameObject gun3;
 
-    int currentGunIndex;
-    List<int> ammo;
+    GameObject currentGunType;
+    Dictionary<GameObject, int> ammo;
     gun_manager playerGuns;
     //int currentAmmo;
     // Start is called before the first frame update
     void Start()
     {
         //currentAmmo = startingAmmo;
-        ammo = new List<int>();
+        ammo = new Dictionary<GameObject, int>();
         playerGuns = GetComponent<gun_manager>();
-        currentGunIndex = playerGuns.current_index;
+        currentGunType = playerGuns.current_gun;
 
-        for (int i = 0; i < numOfGuns; i++){
-            ammo.Add(startingAmmo);
-        }
+        ammo.Add(gun1, startingAmmo);
+        ammo.Add(gun2, startingAmmo);
+        ammo.Add(gun3, startingAmmo);
     }
 
     void Update()
     {
-        currentGunIndex = playerGuns.current_index;
+        currentGunType = playerGuns.current_gun;
+        //Debug.Log(currentGunType.ToString());
     }
 
     public int getCurrentAmmo()
     {
-        return ammo[currentGunIndex];
+        return ammo[currentGunType];
     }
 
-    public void increaseAmmo(int amount)
+    public void increaseAmmo(GameObject gunType, int amount)
     {
         //currentAmmo += amount;
-        ammo[currentGunIndex] += amount;
+        ammo[gunType] += amount;
     }
 
     public void decreaseAmmo(int amount)
     {
-        if ((ammo[currentGunIndex] - amount) <= 0){
-            ammo[currentGunIndex] = 0;
+        if ((ammo[currentGunType] - amount) <= 0){
+            ammo[currentGunType] = 0;
         } else {
-            ammo[currentGunIndex] -= amount;
+            ammo[currentGunType] -= amount;
         }
     }
 }
