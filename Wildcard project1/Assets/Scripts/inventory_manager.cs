@@ -11,6 +11,8 @@ public class inventory_manager : MonoBehaviour
     public GameObject selector;
     private int index = 0;
     public float y_val = 55f;
+    public bool binoculars = false;
+    public Camera m_OrthographicCamera;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,19 @@ public class inventory_manager : MonoBehaviour
             medkits -= 1;
             playerLife heal = player.transform.GetComponent<playerLife>();
             heal.healPlayer(5);
+        }
+        binoculars = true;
+        if ((index ==1) && (true))
+        {
+            Debug.Log(m_OrthographicCamera.orthographicSize);
+            if (m_OrthographicCamera.orthographicSize == 5.0f)
+            {
+                m_OrthographicCamera.orthographicSize = 10.0f;
+            }
+            else if (m_OrthographicCamera.orthographicSize == 10.0f)
+            {
+                m_OrthographicCamera.orthographicSize = 5.0f;
+            }
         }
     }
     public void MoveSelector()

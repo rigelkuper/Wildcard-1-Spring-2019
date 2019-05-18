@@ -442,7 +442,7 @@ PrefabInstance:
     - target: {fileID: 8897946710268416071, guid: 8e47af3c38129a348bf065a6c2c8c41e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8897946710268416074, guid: 8e47af3c38129a348bf065a6c2c8c41e,
         type: 3}
@@ -1305,5 +1305,10 @@ PrefabInstance:
       propertyPath: y_val
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 5257860387446378676, guid: 049622eeab417a94c9d3529b279a9ecd,
+        type: 3}
+      propertyPath: m_OrthographicCamera
+      value: 
+      objectReference: {fileID: 1823314385}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 049622eeab417a94c9d3529b279a9ecd, type: 3}
