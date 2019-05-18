@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 376315455, guid: 049622eeab417a94c9d3529b279a9ecd, type: 3}
+      propertyPath: startingAmmo
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 049622eeab417a94c9d3529b279a9ecd, type: 3}
 --- !u!1 &535460213
@@ -1073,6 +1077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingAmmo: 5
+  numOfGuns: 4
 --- !u!4 &2340674710302088140
 Transform:
   m_ObjectHideFlags: 0

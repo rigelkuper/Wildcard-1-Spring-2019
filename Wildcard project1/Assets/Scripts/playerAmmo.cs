@@ -5,30 +5,47 @@ using UnityEngine;
 public class playerAmmo : MonoBehaviour
 {
     public int startingAmmo = 0;
+    public int numOfGuns = 4;
 
-    int currentAmmo;
+    int currentGunIndex;
+    List<int> ammo;
+    gun_manager playerGuns;
+    //int currentAmmo;
     // Start is called before the first frame update
     void Start()
     {
-        currentAmmo = startingAmmo;
+        //currentAmmo = startingAmmo;
+        ammo = new List<int>();
+        playerGuns = GetComponent<gun_manager>();
+        currentGunIndex = playerGuns.current_index;
+
+        for (int i = 0; i < numOfGuns; i++){
+            ammo.Add(startingAmmo);
+        }
+    }
+
+    void Update()
+    {
+        currentGunIndex = playerGuns.current_index;
     }
 
     public int getCurrentAmmo()
     {
-        return currentAmmo;
+        return ammo[currentGunIndex];
     }
 
     public void increaseAmmo(int amount)
     {
-        currentAmmo += amount;
+        //currentAmmo += amount;
+        ammo[currentGunIndex] += amount;
     }
 
     public void decreaseAmmo(int amount)
     {
-        if ((currentAmmo - amount) <= 0){
-            currentAmmo = 0;
+        if ((ammo[currentGunIndex] - amount) <= 0){
+            ammo[currentGunIndex] = 0;
         } else {
-            currentAmmo -= amount;
+            ammo[currentGunIndex] -= amount;
         }
     }
 }
