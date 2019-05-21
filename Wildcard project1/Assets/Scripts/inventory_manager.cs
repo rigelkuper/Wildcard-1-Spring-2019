@@ -13,6 +13,7 @@ public class inventory_manager : MonoBehaviour
     public float y_val = 55f;
     public bool binoculars = false;
     public Camera m_OrthographicCamera;
+    public int speedups = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +52,23 @@ public class inventory_manager : MonoBehaviour
             medkits += 1;
             Destroy(col.gameObject);
         }
+        if (col.CompareTag("binoculars"))
+        {
+            binoculars = true;
+            Destroy(col.gameObject);
+        }
+        if (col.CompareTag("speedups"))
+        {
+            speedups += 1;
+            Destroy(col.gameObject);
+        }
+    }
+    
+    IEnumerator timer(float time, char_movement mvmt, rotate rotator)
+    {
+        yield return new WaitForSeconds(time);
+        mvmt.speed -= 4;
+        rotator.rotationSpeed -= 4;
     }
     public void UseItem()
     {
@@ -60,10 +78,8 @@ public class inventory_manager : MonoBehaviour
             playerLife heal = player.transform.GetComponent<playerLife>();
             heal.healPlayer(5);
         }
-        binoculars = true;
-        if ((index ==1) && (true))
+        if ((index ==1) && (binoculars))
         {
-            Debug.Log(m_OrthographicCamera.orthographicSize);
             if (m_OrthographicCamera.orthographicSize == 5.0f)
             {
                 m_OrthographicCamera.orthographicSize = 10.0f;
@@ -72,6 +88,16 @@ public class inventory_manager : MonoBehaviour
             {
                 m_OrthographicCamera.orthographicSize = 5.0f;
             }
+        }
+        if ((index == 2) && (speedups > 0))
+        {
+            speedups -= 1;
+            char_movement mvmt = player.transform.GetComponent<char_movement>();
+            mvmt.speed += 4;
+            rotate rotator = player.transform.GetComponent<rotate>();
+            rotator.rotationSpeed += 4;
+            StartCoroutine(timer(5f, mvmt, rotator));
+            
         }
     }
     public void MoveSelector()
