@@ -6,42 +6,83 @@ using UnityEngine.UI;
 public class inventory_manager : MonoBehaviour
 {
     public GameObject medkit_counter;
+    public Button button;
     public int medkits = 0;
     public GameObject player;
-    public GameObject selector;
     private int index = 0;
     public float y_val = 55f;
     public bool binoculars = false;
     public Camera m_OrthographicCamera;
     public int speedups = 0;
-    // Start is called before the first frame update
-    void Start()
+    public GameObject binoc_text;
+    public GameObject speedup_counter;
+    public GameObject speedup_bar;
+    public float speedup_time = 3f;
+    public float timer;
+    private void Start()
     {
-
+        timer = -1f;
+        speedup_bar.GetComponent<Slider>().value = 0f;
     }
-
-    // Update is called once per frame
     void Update()
     {
         //binoculars that change camera zoom
         //energy drink that changes player speed/rotation speed
 
-        medkit_counter.GetComponent<Text>().text = "x" + medkits;
-
-        if (Input.GetButtonDown("change_item"))
+        medkit_counter.GetComponent<Text>().text = " x " + medkits;
+        if (!binoculars)
         {
-            index += 1;
-            if (index >= 3)
+            binoc_text.GetComponent<Text>().text = " None";
+        }
+        else
+        {
+            binoc_text.GetComponent<Text>().text = " Lvl 1";
+        }
+
+        speedup_counter.GetComponent<Text>().text = " x " + speedups;
+        if ((0f <= timer) && (timer <= speedup_time))
+        {
+            timer += Time.deltaTime;
+            speedup_bar.GetComponent<Slider>().value = 1f - (timer / speedup_time);
+        }
+        
+
+    }
+    public void use_medkit()
+    {
+        if ((medkits > 0))
+        {
+            medkits -= 1;
+            playerLife heal = player.transform.GetComponent<playerLife>();
+            heal.healPlayer(5);
+        }
+    }
+    public void use_binoculars()
+    {
+        if ((binoculars))
+        {
+            if (m_OrthographicCamera.orthographicSize == 5.0f)
             {
-                index = 0;
+                m_OrthographicCamera.orthographicSize = 10.0f;
+            }
+            else if (m_OrthographicCamera.orthographicSize == 10.0f)
+            {
+                m_OrthographicCamera.orthographicSize = 5.0f;
             }
         }
-        if (Input.GetButtonDown("use_item"))
+    }
+    public void use_speedups()
+    {
+        if ((speedups > 0))
         {
-            UseItem();
+            speedups -= 1;
+            char_movement mvmt = player.transform.GetComponent<char_movement>();
+            mvmt.speed += 4;
+            rotate rotator = player.transform.GetComponent<rotate>();
+            rotator.rotationSpeed += 4;
+            timer = 0f;
+            speedup_bar.GetComponent<Slider>().value = 0f;
         }
-        MoveSelector();
-
     }
 
     public void OnTriggerEnter2D(Collider2D col)
@@ -64,63 +105,6 @@ public class inventory_manager : MonoBehaviour
         }
     }
     
-    IEnumerator timer(float time, char_movement mvmt, rotate rotator)
-    {
-        yield return new WaitForSeconds(time);
-        mvmt.speed -= 4;
-        rotator.rotationSpeed -= 4;
-    }
-    public void UseItem()
-    {
-        if ((index == 0) && (medkits > 0))
-        {
-            medkits -= 1;
-            playerLife heal = player.transform.GetComponent<playerLife>();
-            heal.healPlayer(5);
-        }
-        if ((index ==1) && (binoculars))
-        {
-            if (m_OrthographicCamera.orthographicSize == 5.0f)
-            {
-                m_OrthographicCamera.orthographicSize = 10.0f;
-            }
-            else if (m_OrthographicCamera.orthographicSize == 10.0f)
-            {
-                m_OrthographicCamera.orthographicSize = 5.0f;
-            }
-        }
-        if ((index == 2) && (speedups > 0))
-        {
-            speedups -= 1;
-            char_movement mvmt = player.transform.GetComponent<char_movement>();
-            mvmt.speed += 4;
-            rotate rotator = player.transform.GetComponent<rotate>();
-            rotator.rotationSpeed += 4;
-            StartCoroutine(timer(5f, mvmt, rotator));
-            
-        }
-    }
-    public void MoveSelector()
-    {
-        //105
-        //1 = 47
-        //2 = -16
-        
-        if (index == 0)
-        {
-            y_val = 275f;
-        }
-        if (index == 1)
-        {
-            y_val = 165.5f;
-        }
-        if (index == 2)
-        {
-            y_val = 75.6f;
-        }
-        //Debug.Log(selector.GetComponent<RectTransform>().localPosition);
-        //selector.GetComponent<RectTransform>().SetPositionAndRotation(new Vector3(27.3f, y_val, 0.0f), new Quaternion(0.0f, 0.0f, 0.7f, 0.7f));
-        // selector.GetComponent<RectTransform>().InverseTransformVector(new Vector3(27.3f, y_val, 0.0f));
-        selector.GetComponent<RectTransform>().position = new Vector3(34.8f, y_val, 0.0f);
-    }
+    
+    
 }
