@@ -12,20 +12,24 @@ public class raycast_shoot : MonoBehaviour
     public float time_since = 0f;
     public GameObject line;
     public int num_shots = 1;
+    
+    playerAmmo ammo;
     void Start()
     {
         shot.SetPosition(0, new Vector3(0, 0, 0));
         shot.SetPosition(0, new Vector3(0, 0, 0));
         shot.startWidth = 0;
         shot.endWidth = 0;
+        ammo = GetComponentInParent<playerAmmo>();
     }
     void Update()
     {
-        if (Input.GetButton("Fire1") && (time_since <= 0))
+        if (Input.GetButton("Fire1") && (time_since <= 0) && (ammo.getCurrentAmmo() > 0))
         {
             for (int i = 0; i < num_shots; i++)
             {
                 Shoot();
+                ammo.decreaseAmmo(1);
                 time_since = seconds;
             }
             

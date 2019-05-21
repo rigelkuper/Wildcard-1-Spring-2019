@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Wall
   - gun
+  - medkit
+  - binoculars
+  - speedups
   layers:
   - Default
   - TransparentFX
