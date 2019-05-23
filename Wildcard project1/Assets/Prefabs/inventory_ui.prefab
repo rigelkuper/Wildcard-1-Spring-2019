@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 1626469844241537140}
   - component: {fileID: 1626469844241537143}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: inventory_ui
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1251,6 +1251,12 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4937157185588767199, guid: 916765afd5600894dab7bcf929944d66,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ff89f358ff94d9f498496ad4d6947334,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 916765afd5600894dab7bcf929944d66, type: 3}
 --- !u!224 &1626469845149237176 stripped
