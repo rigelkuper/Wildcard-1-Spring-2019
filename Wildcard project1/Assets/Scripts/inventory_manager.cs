@@ -45,6 +45,13 @@ public class inventory_manager : MonoBehaviour
             timer += Time.deltaTime;
             speedup_bar.GetComponent<Slider>().value = 1f - (timer / speedup_time);
         }
+        if (timer >= speedup_time)
+        {
+            char_movement mvmt = player.transform.GetComponent<char_movement>();
+            mvmt.speed = 7;
+            rotate rotator = player.transform.GetComponent<rotate>();
+            rotator.rotationSpeed = 5;
+        }
         
 
     }
