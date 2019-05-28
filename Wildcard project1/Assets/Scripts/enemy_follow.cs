@@ -25,6 +25,7 @@ public class enemy_follow : MonoBehaviour
     private Transform minY;
     [SerializeField]
     private Transform maxY;
+    [SerializeField]
     private float wait_time; // make private
     [SerializeField]
     private float start_wait_time;
@@ -54,24 +55,23 @@ public class enemy_follow : MonoBehaviour
         }
 
 
-        //else if (idle)
-        //{
-        //    target.position = move_spots.position;
-
-        //    //waits(wait_time) until to move to another position
-        //    if (Vector2.Distance(transform.position, move_spots.position) < 0.2f)
-        //    {
-        //        if (wait_time <= 0)
-        //        {
-        //            move_spots.position = new Vector2(Random.Range(minX.position.x, maxX.position.x), Random.Range(minY.position.y, maxY.position.y));
-        //            wait_time = start_wait_time;
-        //        }
-        //        else
-        //        {
-        //            wait_time -= Time.deltaTime;
-        //        }
-        //    }
-        //}
+        else if (idle)
+        {
+            //waits(wait_time) until to move to another position
+            if (Vector2.Distance(transform.position, target.position) < 1.0f)
+            {
+                Debug.Log("count downn");
+                if (wait_time <= 0)
+                {
+                    target.position = new Vector2(Random.Range(minX.position.x, maxX.position.x), Random.Range(minY.position.y, maxY.position.y));
+                    wait_time = start_wait_time;
+                }
+                else
+                {
+                    wait_time -= Time.deltaTime;
+                }
+            }
+        }
     }
 
     void OnTriggerStay2D(Collider2D collision)
