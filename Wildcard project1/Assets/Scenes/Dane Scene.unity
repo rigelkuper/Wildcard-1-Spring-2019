@@ -317,7 +317,7 @@ PrefabInstance:
     - target: {fileID: 8897946710268416071, guid: 8e47af3c38129a348bf065a6c2c8c41e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8897946710268416074, guid: 8e47af3c38129a348bf065a6c2c8c41e,
         type: 3}
@@ -1113,6 +1113,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1626469843795870044, guid: f2986b62d39620b4d91a7f2d38a5c3c0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 97752394}
     - target: {fileID: 1626469844241537138, guid: f2986b62d39620b4d91a7f2d38a5c3c0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1253,11 +1258,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1626469843795870044, guid: f2986b62d39620b4d91a7f2d38a5c3c0,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 97752394}
     - target: {fileID: 5914967910796584003, guid: f2986b62d39620b4d91a7f2d38a5c3c0,
         type: 3}
       propertyPath: m_AnchorMin.y

@@ -26,9 +26,6 @@ public class inventory_manager : MonoBehaviour
     }
     void Update()
     {
-        //binoculars that change camera zoom
-        //energy drink that changes player speed/rotation speed
-
         medkit_counter.GetComponent<Text>().text = " x " + medkits;
         if (!binoculars)
         {
@@ -52,7 +49,6 @@ public class inventory_manager : MonoBehaviour
             rotate rotator = player.transform.GetComponent<rotate>();
             rotator.rotationSpeed = 5;
         }
-        
 
     }
     public void use_medkit()
