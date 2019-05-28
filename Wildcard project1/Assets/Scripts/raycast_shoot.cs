@@ -29,10 +29,10 @@ public class raycast_shoot : MonoBehaviour
             for (int i = 0; i < num_shots; i++)
             {
                 Shoot();
-                ammo.decreaseAmmo(1);
+                
                 time_since = seconds;
             }
-            
+            ammo.decreaseAmmo(1);
         }
         time_since -= Time.deltaTime;
     }
