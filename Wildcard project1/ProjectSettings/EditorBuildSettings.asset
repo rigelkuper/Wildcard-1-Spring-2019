@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MattMainMenu.unity
     guid: e4747261f2cfa584bba18f0d482fbebd
   - enabled: 1
-    path: Assets/Scenes/MattScene.unity
-    guid: cfb126eca7c150a4ba74ca65b2a10d3b
+    path: Assets/Scenes/final_scene.unity
+    guid: 3d78a54d2bc6bf3479998538ec96e37d
   - enabled: 1
     path: Assets/Scenes/MattGameOver.unity
     guid: d356037337032b04ab78a8f47b982a5f
