@@ -25,7 +25,6 @@ public class enemy_follow : MonoBehaviour
     private Transform minY;
     [SerializeField]
     private Transform maxY;
-    [SerializeField]
     private float wait_time; // make private
     [SerializeField]
     private float start_wait_time;
@@ -51,16 +50,13 @@ public class enemy_follow : MonoBehaviour
         {
             idle = false;
             target.position = thePlayer.position;
-
         }
-
 
         else if (idle)
         {
             //waits(wait_time) until to move to another position
             if (Vector2.Distance(transform.position, target.position) < 1.0f)
             {
-                Debug.Log("count downn");
                 if (wait_time <= 0)
                 {
                     target.position = new Vector2(Random.Range(minX.position.x, maxX.position.x), Random.Range(minY.position.y, maxY.position.y));
