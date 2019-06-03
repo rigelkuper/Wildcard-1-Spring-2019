@@ -103,6 +103,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   medkit_counter: {fileID: 0}
+  button: {fileID: 0}
+  medkits: 0
+  player: {fileID: 0}
+  y_val: 55
+  binoculars: 0
+  m_OrthographicCamera: {fileID: 0}
+  speedups: 0
+  binoc_text: {fileID: 0}
+  speedup_counter: {fileID: 0}
+  speedup_bar: {fileID: 0}
+  speedup_time: 3
+  timer: 0
 --- !u!114 &2801591768396651808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +148,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 10
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -240,6 +252,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingAmmo: 5
+  numOfGuns: 3
+  gun1: {fileID: 0}
+  gun2: {fileID: 0}
+  gun3: {fileID: 0}
 --- !u!1 &6795336573144126530
 GameObject:
   m_ObjectHideFlags: 0
