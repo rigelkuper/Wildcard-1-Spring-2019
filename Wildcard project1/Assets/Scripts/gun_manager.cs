@@ -62,7 +62,14 @@ public class gun_manager : MonoBehaviour
         {
             foreach (Transform child in transform)
             {
-                GameObject.Destroy(child.gameObject);
+                Debug.Log(child.ToString());
+                if ((child.ToString() == "machine_gun (UnityEngine.Transform)") || (child.ToString() == "sniper(Clone) (UnityEngine.Transform)") || (child.ToString() == "shotgun(Clone) (UnityEngine.Transform)") || (child.ToString() == "machine_gun(Clone) (UnityEngine.Transform)"))
+                {
+                    GameObject.Destroy(child.gameObject);
+                }
+                
+                
+                
             }
 
             //current_gun.transform.SetParent(parent);
@@ -70,6 +77,5 @@ public class gun_manager : MonoBehaviour
             gun.transform.SetParent(parent);
             
         }
-        
     }
 }
