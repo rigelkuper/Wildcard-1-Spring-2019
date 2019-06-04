@@ -11,13 +11,13 @@ public class enemy_controller : MonoBehaviour
 
     //char_health enemyHealth;
     float currentHealth;
-    SpriteRenderer enemySprite;
+    public SpriteRenderer enemySprite;
     void Start()
     {
         //enemyHealth = GetComponent<char_health>();
         //enemyHealth.setHealth(maxHealth);
         currentHealth = maxHealth;
-        enemySprite = GetComponent<SpriteRenderer>();
+        //enemySprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame

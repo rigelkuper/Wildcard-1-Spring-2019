@@ -185,6 +185,7 @@ MonoBehaviour:
   maxHealth: 10
   damageAmount: 3
   hurtFrameSeconds: 1
+  enemySprite: {fileID: 8614554243027962970}
 --- !u!1 &4906263985870876047
 GameObject:
   m_ObjectHideFlags: 0
