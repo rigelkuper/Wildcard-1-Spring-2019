@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MattGameOver.unity
     guid: d356037337032b04ab78a8f47b982a5f
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: 4b6fd9ec33a7028448db45b558c2bc15
   m_configObjects: {}
