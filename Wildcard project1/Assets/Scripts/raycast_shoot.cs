@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class raycast_shoot : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class raycast_shoot : MonoBehaviour
     public float time_since = 0f;
     public GameObject line;
     public int num_shots = 1;
-    
+    private bool shoot_bool = false;
+    private int frame_counter = 0;
+    private int current_frame = -6;
+    private bool final_shoot = true;
     playerAmmo ammo;
     void Start()
     {
@@ -24,15 +28,23 @@ public class raycast_shoot : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButton("Fire1") && (time_since <= 0) && (ammo.getCurrentAmmo() > 0))
+        inventory_manager can_fire = GetComponentInParent<inventory_manager>();
+        //Debug.Log(can_fire.clicked.ToString() + (Input.GetButton("Fire1") && (time_since <= 0) && (ammo.getCurrentAmmo() > 0) && (can_fire.clicked)).ToString());
+        frame_counter += 1;
+        
+        if (Input.GetButton("Fire1") && (time_since <= 0) && (ammo.getCurrentAmmo() > 0) && (can_fire.clicked))
         {
             for (int i = 0; i < num_shots; i++)
             {
                 Shoot();
-                
+                current_frame = frame_counter;
                 time_since = seconds;
             }
             ammo.decreaseAmmo(1);
+        }
+        if (!can_fire.clicked)
+        {
+            Debug.Log(current_frame.ToString() +" " +  frame_counter.ToString());
         }
         time_since -= Time.deltaTime;
     }

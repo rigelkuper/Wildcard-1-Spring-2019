@@ -19,6 +19,7 @@ public class inventory_manager : MonoBehaviour
     public GameObject speedup_bar;
     public float speedup_time = 3f;
     public float timer;
+    public bool clicked = true;
     private void Start()
     {
         timer = -1f;
@@ -49,10 +50,13 @@ public class inventory_manager : MonoBehaviour
             rotate rotator = player.transform.GetComponent<rotate>();
             rotator.rotationSpeed = 5;
         }
+        clicked = true;
 
     }
     public void use_medkit()
     {
+        Debug.Log("clicked inventory");
+        clicked = false;
         if ((medkits > 0))
         {
             medkits -= 1;
@@ -62,6 +66,7 @@ public class inventory_manager : MonoBehaviour
     }
     public void use_binoculars()
     {
+        clicked = false;
         if ((binoculars))
         {
             if (m_OrthographicCamera.orthographicSize == 5.0f)
@@ -76,6 +81,7 @@ public class inventory_manager : MonoBehaviour
     }
     public void use_speedups()
     {
+        clicked = false;
         if ((speedups > 0))
         {
             speedups -= 1;
@@ -87,7 +93,7 @@ public class inventory_manager : MonoBehaviour
             speedup_bar.GetComponent<Slider>().value = 0f;
         }
     }
-
+    
     public void OnTriggerEnter2D(Collider2D col)
     {
         
